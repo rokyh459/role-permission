@@ -11,6 +11,27 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                <h1>Role & Permission Testing</h1>
+
+                @if (auth()->user()->hasRole('admin'))
+                    <p>Welcome, Admin! You have full access.</p>
+                @endif
+
+                @if (auth()->user()->hasRole('user'))
+                    <p>Welcome, User! You have limited access.</p>
+                @endif
+
+                @if (auth()->user()->can('edit-posts'))
+                    <p>You have permission to edit posts. <a href="#">Edit Post</a></p>
+                @endif
+
+                @if (auth()->user()->can('delete-posts'))
+                    <p>You have permission to delete posts. <a href="#">Delete Post</a></p>
+                @endif
+
+                @if (auth()->user()->can('publish-posts'))
+                    <p>You have permission to publish posts. <a href="#">Publish Post</a></p>
+                @endif
             </div>
         </div>
     </div>
